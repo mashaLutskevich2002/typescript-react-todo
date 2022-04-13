@@ -45,7 +45,7 @@ body{
 }
 
 .body-popup{
-  width: 250px;
+  width: 300px;
   height: 250px;
   background-color: aliceblue;
   z-index: 2;
@@ -58,11 +58,21 @@ body{
   border-radius: 20px;
 }
 
+.body-popup > p{
+  width: 80%;
+}
+
+
 .button{
   width: 50%;
+  height: 35px;
   margin-bottom: 10px;
   border-radius: 10px;
   border-style: none;
   background-color: brown;
   color: white;
+}
+
+.button:hover{
+  background-color: rgb(236, 81, 81);
 }

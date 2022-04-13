@@ -12,7 +12,7 @@ interface TodoListProps{
 
 export const TodoList: React.FC<TodoListProps> = (props) => {
     return(
-        <div>
+       <>
             {props.todos.map((item)=>{
                 return (
                     <ul className='todo'>
@@ -20,7 +20,8 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
                     </ul>
                 )
             })}
-        </div>
+        </>
+      
     )
 
 }

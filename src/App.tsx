@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Header} from "./Components/Header";
 import {TodoMain} from "./Components/TodoMain";
 import {ITodo} from "./todoObject";
+import { PopupDelete } from './Components/PopupDelete';
 
 const App: React.FC = () => {
     const [todos, setTodos] = useState<ITodo[]>([])
@@ -17,7 +18,7 @@ const App: React.FC = () => {
     }
 
     useEffect(() => {
-        const saveTodo = JSON.parse(localStorage.getItem('todo') || '[]')
+        const saveTodo = JSON.parse(localStorage.getItem('todo') || '[]') as ITodo[]
         setTodos(saveTodo)
     },[])
 
@@ -38,13 +39,18 @@ const App: React.FC = () => {
     }
 
     const removeTodo=(id:number) => {
-        setTodos(prev => prev.filter((item) => item.id !== id))
-        setIsShow(false)
+        let showMess = window.confirm('Are you sure you want to delete the note?')
+        if(showMess){
+            setTodos(prev => prev.filter((item) => item.id !== id))
+            setIsShow(true)
+        }
+        // setIsShow(false)
     }
 
   return (
     <>
         <Header/>
+        <PopupDelete isShow={isShow} setIsShow={setIsShow} />
         <TodoMain isShow={isShow} setIsShow={setIsShow} handlerTodoValue = {handlerTodoValue} todos={todos} checkedTodo={checkedTodo} removeTodo={removeTodo}/>
     </>
 

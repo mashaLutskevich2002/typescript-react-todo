@@ -1,4 +1,5 @@
 import React from "react";
+import { PopupDelete } from "../PopupDelete";
 
 type TodoElementProps = {
     id: number
@@ -6,6 +7,7 @@ type TodoElementProps = {
     completed: boolean,
     checkedTodo(id:number):void
     removeTodo(id:number):void
+    setIsShow(isShow:boolean):void
 }
 
 
@@ -13,6 +15,7 @@ export const TodoElement: React.FC<TodoElementProps> = (props) => {
 
     const removeHandler = (e:React.MouseEvent) =>{
         e.preventDefault()
+        props.setIsShow(true)
         props.removeTodo(props.id)
     }
 

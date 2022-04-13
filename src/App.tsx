@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Header} from "./Components/Header";
+import { PopupDelete } from './Components/PopupDelete';
 import {TodoMain} from "./Components/TodoMain";
 import {ITodo} from "./todoObject";
 
 const App: React.FC = () => {
-    const [todos, setTodos ] = useState<ITodo[]>([])
+    const [todos, setTodos] = useState<ITodo[]>([])
+    const [isShow, setIsShow] = useState(false)
+    const [isPressYes, setIsPressYes] = useState(false)
 
     const handlerTodoValue = (title: string) =>{
         const newTodo: ITodo = {
@@ -14,6 +17,7 @@ const App: React.FC = () => {
         }
         setTodos(prev => [newTodo, ...prev])
     }
+
     useEffect(() => {
         const saveTodo = JSON.parse(localStorage.getItem('todo') || '[]')
         setTodos(saveTodo)
@@ -33,17 +37,20 @@ const App: React.FC = () => {
           });
       })
     }
+
     const removeTodo=(id:number) => {
-        const sureConfirm = window.confirm('Are you sure you want to delete the note?')
-        if(sureConfirm){
+        if(isPressYes){
+            console.log(isPressYes);
             setTodos(prev => prev.filter((item) => item.id !== id))
-        }
+            setIsPressYes(false)   
+        } 
     }
 
   return (
     <>
         <Header/>
-        <TodoMain handlerTodoValue = {handlerTodoValue} todos={todos} checkedTodo={checkedTodo} removeTodo={removeTodo}/>
+        <PopupDelete isShow={isShow} setIsShow={setIsShow} setIsPressYes={setIsPressYes}/>
+        <TodoMain setIsShow={setIsShow} handlerTodoValue = {handlerTodoValue} todos={todos} checkedTodo={checkedTodo} removeTodo={removeTodo}/>
     </>
 
   );

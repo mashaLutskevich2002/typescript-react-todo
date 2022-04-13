@@ -1,3 +1,7 @@
+body{
+  position: relative;
+  height: 100vh;
+}
 .pd-10{
   padding: 0 20px;
 }
@@ -15,4 +19,44 @@
 
 .todo.completed span{
   text-decoration: line-through;
+}
+.popup{
+
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  opacity: 0.7;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100vh;
+  transform: scale(0);
+}
+.popup.active{
+  transform: scale(1);
+}
+
+.body-popup{
+  width: 250px;
+  height: 250px;
+  background-color: aliceblue;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 20px;
+}
+.button{
+  width: 50%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-style: none;
+  background-color: brown;
+  color: white;
 }

@@ -7,6 +7,7 @@ interface TodoListProps{
     checkedTodo(id:number):void
     removeTodo(id:number):void
     setIsShow(isShow:boolean):void
+    isShow:boolean
 }
 
 export const TodoList: React.FC<TodoListProps> = (props) => {
@@ -15,7 +16,7 @@ export const TodoList: React.FC<TodoListProps> = (props) => {
             {props.todos.map((item)=>{
                 return (
                     <ul className='todo'>
-                        <TodoElement setIsShow={props.setIsShow} completed={item.completed} title={item.title} id={item.id} checkedTodo={props.checkedTodo} removeTodo={props.removeTodo}/>
+                        <TodoElement isShow={props.isShow} setIsShow={props.setIsShow} completed={item.completed} title={item.title} id={item.id} checkedTodo={props.checkedTodo} removeTodo={props.removeTodo}/>
                     </ul>
                 )
             })}

@@ -9,6 +9,7 @@ interface TodoMainProps{
     removeTodo(id:number):void
     todos: ITodo[]
     setIsShow(isShow:boolean):void
+    isShow:boolean
 }
 
 export const TodoMain: React.FC<TodoMainProps> = (props) =>{
@@ -16,7 +17,7 @@ export const TodoMain: React.FC<TodoMainProps> = (props) =>{
          <>
             <Input handlerTodoValue={props.handlerTodoValue}/>
              <div className='container'>
-                 <TodoList setIsShow={props.setIsShow} todos={props.todos} checkedTodo={props.checkedTodo} removeTodo={props.removeTodo}/>
+                 <TodoList isShow={props.isShow} setIsShow={props.setIsShow} todos={props.todos} checkedTodo={props.checkedTodo} removeTodo={props.removeTodo}/>
              </div>
          </>
    )

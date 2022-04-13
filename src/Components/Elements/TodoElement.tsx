@@ -8,6 +8,7 @@ type TodoElementProps = {
     checkedTodo(id:number):void
     removeTodo(id:number):void
     setIsShow(isShow:boolean):void
+    isShow:boolean
 }
 
 
@@ -16,10 +17,10 @@ export const TodoElement: React.FC<TodoElementProps> = (props) => {
     const removeHandler = (e:React.MouseEvent) =>{
         e.preventDefault()
         props.setIsShow(true)
-        props.removeTodo(props.id)
     }
 
     return(
+        <>
             <li className={props.completed ? 'todo completed' : 'todo'} key={props.id}>
                 <label className='todo'>
                 <input type='checkbox' checked={props.completed}  onChange={()=>props.checkedTodo(props.id)} />
@@ -27,5 +28,9 @@ export const TodoElement: React.FC<TodoElementProps> = (props) => {
                 <i className='material-icons red-text' onClick={removeHandler}> delete </i>
                 </label>
             </li>
+
+            <PopupDelete removeTodo={props.removeTodo} id={props.id} isShow={props.isShow} setIsShow={props.setIsShow} />
+        </>
+           
     )
 }
